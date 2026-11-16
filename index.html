@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Contemporary Fashion & Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF9F6;
+            --bg-secondary: #F2EFE9;
+            --text-primary: #141414;
+            --text-secondary: #5C5B57;
+            --accent: #8C6D4F;
+            --border: #E2DDD5;
+            --white: #FFFFFF;
+            --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: var(--text-primary);
+            color: var(--white);
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(250, 249, 246, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            letter-spacing: 0.18em;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 88vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            background: linear-gradient(to right, rgba(20, 20, 20, 0.55), rgba(20, 20, 20, 0.15)),
+                        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 620px;
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+            opacity: 0.9;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.2rem);
+            line-height: 1.05;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            margin-bottom: 36px;
+            opacity: 0.9;
+            max-width: 480px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 36px;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-light {
+            background-color: var(--white);
+            color: var(--text-primary);
+        }
+
+        .btn-light:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .btn-dark {
+            background-color: var(--text-primary);
+            color: var(--white);
+        }
+
+        .btn-dark:hover {
+            background-color: var(--accent);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 96px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--text-primary);
+            color: var(--white);
+            border-color: var(--text-primary);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 36px 28px;
+        }
+
+        .product-card {
+            group: true;
+            transition: var(--transition);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background-color: var(--bg-secondary);
+            margin-bottom: 16px;
+        }
+
+        .product-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background-color: var(--white);
+            color: var(--text-primary);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+        }
+
+        .quick-add {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(20, 20, 20, 0.92);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .quick-add {
+            transform: translateY(0);
+        }
+
+        .product-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .product-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .product-price {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Editorial Banner */
+        .editorial-split {
+            background-color: var(--bg-secondary);
+            max-width: 100%;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .editorial-img {
+            background: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;
+            min-height: 420px;
+        }
+
+        .editorial-text {
+            padding: 80px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .editorial-text h2 {
+            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+            line-height: 1.12;
+            margin-bottom: 20px;
+        }
+
+        .editorial-text p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 460px;
+        }
+
+        /* Lookbook Masonry-style */
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .lookbook-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .lookbook-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .lookbook-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .lookbook-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+            color: var(--white);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            max-width: 100%;
+            background-color: var(--bg-secondary);
+        }
+
+        .newsletter-inner {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .newsletter p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            background-color: var(--white);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-primary);
+            color: #A3A098;
+            padding: 72px 40px 36px;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 56px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            max-width: 300px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: #A3A098;
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        /* Slide-over Cart Drawer */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 200;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            background-color: var(--bg-primary);
+            z-index: 201;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+        }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item img {
+            width: 72px;
+            height: 92px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            font-size: 0.92rem;
+        }
+
+        .cart-item-price {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin: 4px 0 10px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--text-primary);
+            color: var(--white);
+            padding: 12px 26px;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.3s ease;
+            z-index: 300;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .nav-container { padding: 16px 24px; }
+            section { padding: 64px 24px; }
+            .editorial-split { grid-template-columns: 1fr; }
+            .lookbook-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .newsletter-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        Complimentary Express Shipping on Orders Over $250 &mdash; Autumn / Winter Collection Now Live
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#editorial">Editorial</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
+            </ul>
+            <a href="#" class="logo">AURELIA</a>
+            <div class="nav-actions">
+                <button class="cart-btn" id="openCartBtn">Bag (<span id="cartCount">0</span>)</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="max-width: 100%; padding: 0 8%;">
+            <div class="hero-content">
+                <span class="hero-tag">Autumn / Winter 2026</span>
+                <h1>Quiet Luxury, Tailored for Motion.</h1>
+                <p>Architectural silhouettes crafted from Italian virgin wool, raw silk, and organic cashmere.</p>
+                <a href="#collection" class="btn btn-light">Explore Collection</a>
+            </div>
+        </section>
+
+        <!-- Product Catalog -->
+        <section id="collection">
+            <div class="section-header">
+                <div>
+                    <span class="section-subtitle">Curated Pieces</span>
+                    <h2 class="section-title">The Season Edit</h2>
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+                    <button class="filter-btn" data-filter="knitwear">Knitwear</button>
+                    <button class="filter-btn" data-filter="tailoring">Tailoring</button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Editorial Split -->
+        <div class="editorial-split" id="editorial">
+            <div class="editorial-img"></div>
+            <div class="editorial-text">
+                <span class="section-subtitle">The Atelier Journal</span>
+                <h2>Form Follows Fabric</h2>
+                <p>Every garment in our studio begins with raw textile research. Partnering with family-owned mills in Biella and Como, we design enduring pieces meant to outlive seasonal trends.</p>
+                <a href="#lookbook" class="btn btn-dark">View the Lookbook</a>
+            </div>
+        </div>
+
+        <!-- Lookbook -->
+        <section id="lookbook">
+            <div class="section-header">
+                <div>
+                    <span class="section-subtitle">Campaign</span>
+                    <h2 class="section-title">Milan &mdash; 07:30 AM</h2>
+                </div>
+            </div>
+            <div class="lookbook-grid">
+                <div class="lookbook-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" alt="Look 01">
+                    <div class="lookbook-caption">
+                        <h3 class="serif" style="font-size: 1.5rem;">Look 01</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.85;">Structured Trench &amp; Pleated Trouser</p>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80" alt="Look 02">
+                    <div class="lookbook-caption">
+                        <h3 class="serif" style="font-size: 1.5rem;">Look 02</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.85;">Double-Breasted Camel Coat</p>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=80" alt="Look 03">
+                    <div class="lookbook-caption">
+                        <h3 class="serif" style="font-size: 1.5rem;">Look 03</h3>
+                        <p style="font-size: 0.85rem; opacity: 0.85;">Brushed Cashmere Turtleneck</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="newsletter-inner">
+                <span class="section-subtitle">Private Access</span>
+                <h2>Join the Atelier List</h2>
+                <p>Receive early access to limited capsule releases, private showroom appointments, and editorial dispatches.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-dark">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">AURELIA</a>
+                <p>Contemporary ready-to-wear defined by architectural restraint, tactile natural fibers, and responsible small-batch production.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#collection">New Arrivals</a></li>
+                    <li><a href="#collection">Outerwear</a></li>
+                    <li><a href="#collection">Knitwear</a></li>
+                    <li><a href="#collection">Tailoring</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Client Care</h4>
+                <ul>
+                    <li><a href="#">Shipping &amp; Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Garment Care</a></li>
+                    <li><a href="#">Contact Atelier</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Substack</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 AURELIA Studio. All rights reserved.</span>
+            <span>Designed for Static Deployment</span>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3 class="serif" style="font-size: 1.6rem;">Shopping Bag</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Your shopping bag is currently empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="btn btn-dark" style="width: 100%; text-align: center;" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <div class="toast" id="toast">Added to bag</div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Belted Virgin Wool Coat",
+                category: "outerwear",
+                price: 680,
+                badge: "Bestseller",
+                image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                name: "Ribbed Cashmere Crewneck",
+                category: "knitwear",
+                price: 340,
+                badge: "New",
+                image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                name: "Pleated Wide-Leg Trouser",
+                category: "tailoring",
+                price: 295,
+                badge: "",
+                image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                name: "Structured Gabardine Trench",
+                category: "outerwear",
+                price: 750,
+                badge: "Limited",
+                image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                name: "Single-Breasted Silk Blazer",
+                category: "tailoring",
+                price: 520,
+                badge: "",
+                image: "https://images.unsplash.com/photo-1548624313-0396c75e4b1a?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                name: "Merino Sculpted Cardigan",
+                category: "knitwear",
+                price: 310,
+                badge: "New",
+                image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        let cart = [];
+
+        const productGrid = document.getElementById('productGrid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartCountEl = document.getElementById('cartCount');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const toastEl = document.getElementById('toast');
+
+        function renderProducts(filter = 'all') {
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            productGrid.innerHTML = filtered.map(product => `
+                <article class="product-card">
+                    <div class="product-image-wrap">
+                        ${product.badge ? `<span class="badge">${product.badge}</span>` : ''}
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <button class="quick-add" onclick="addToCart(${product.id})">Quick Add &mdash; $${product.price}</button>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                        </div>
+                        <span class="product-price">$${product.price}</span>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function showToast(message) {
+            toastEl.textContent = message;
+            toastEl.classList.add('show');
+            setTimeout(() => toastEl.classList.remove('show'), 2500);
+        }
+
+        function addToCart(id) {
+            const item = products.find(p => p.id === id);
+            if (!item) return;
+            cart.push(item);
+            updateCartUI();
+            showToast(`Added "${item.name}" to bag`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartCountEl.textContent = cart.length;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotalEl.textContent = `$${total.toLocaleString()}`;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<p style="color: var(--text-secondary); font-size: 0.9rem;">Your shopping bag is currently empty.</p>`;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">$${item.price}</div>
+                        <button class="remove-item" onclick="removeFromCart(${idx})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderProducts(btn.dataset.filter);
+            });
+        });
+
+        // Drawer toggles
+        function toggleCart(open) {
+            cartDrawer.classList.toggle('open', open);
+            cartOverlay.classList.toggle('open', open);
+        }
+
+        document.getElementById('openCartBtn').addEventListener('click', () => toggleCart(true));
+        document.getElementById('closeCartBtn').addEventListener('click', () => toggleCart(false));
+        cartOverlay.addEventListener('click', () => toggleCart(false));
+
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            if (cart.length === 0) {
+                showToast('Your bag is empty');
+                return;
+            }
+            showToast('Proceeding to demo checkout...');
+        });
+
+        document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Subscribed to AURELIA');
+            e.target.reset();
+        });
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
